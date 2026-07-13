@@ -1,0 +1,1093 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>justfit | Premium Immersive Fitness & Wellness Dashboard</title>
+    <meta name="description" content="A premium AI-powered dashboard offering real-time health telemetry, custom workout routines, meal plans, mental health tracking, sleep analytics, and gamified achievements." />
+    <meta name="keywords" content="health tracker, fitness dashboard, whoop dashboard, apple health web, AI fitness coach, sleep tracker, nutrition planner" />
+    
+    <!-- Favicon & Styles -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- Background Ambient Glow -->
+    <div class="glow-orb orb-primary" aria-hidden="true"></div>
+    <div class="glow-orb orb-secondary" aria-hidden="true"></div>
+    <div class="glow-orb orb-accent" aria-hidden="true"></div>
+
+    <!-- 1. AUTHENTICATION & ONBOARDING PAGE -->
+    <div id="auth-container" class="auth-wrapper">
+      <!-- Left Panel: Graphic & Intro -->
+      <div class="auth-hero-panel">
+        <a href="#" class="auth-logo">
+          <i data-lucide="zap" style="color: var(--primary-color); fill: var(--primary-color);"></i>
+          <span>justfit</span>
+        </a>
+        <div class="auth-motto" style="font-size: 0.8rem; font-weight: 600; color: var(--primary-color); text-transform: uppercase; letter-spacing: 0.1em; margin-top: -0.5rem; margin-bottom: 2rem;">Pure Power, Zero Compromise</div>
+        <div class="auth-hero-content">
+          <h2 class="auth-hero-title">Unlock Your Body's True Potential.</h2>
+          <p class="auth-hero-subtitle">Experience commercial-grade health telemetry, customized workout circuits, macro meal logging, and interactive coaching powered by next-generation justfit models.</p>
+          
+          <!-- Mini Glass Showcase -->
+          <div class="glass-card" style="padding: 1.25rem; display: flex; align-items: center; gap: 1rem; background: rgba(255, 255, 255, 0.02); max-width: 360px;">
+            <i data-lucide="shield-check" style="color: var(--primary-color); width: 32px; height: 32px;"></i>
+            <div>
+              <h4 style="font-size: 0.9rem; font-weight: 700;">HIPAA Compliant & Encrypted</h4>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">Your personal biometrics are fully protected.</p>
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 justfit Technologies, Inc. All rights reserved.</p>
+      </div>
+
+      <!-- Right Panel: Interactive Card -->
+      <div class="auth-form-panel">
+        <!-- A: LOGIN VIEW -->
+        <div class="auth-card" id="login-section">
+          <h3 class="auth-card-title">Welcome Back</h3>
+          <p class="auth-card-subtitle">Enter your details to open your health dashboard.</p>
+          
+          <div class="form-error" id="login-error" role="alert"></div>
+
+          <form id="login-form">
+            <div class="form-group">
+              <label for="login-email">Email Address</label>
+              <div class="input-wrapper">
+                <i data-lucide="mail" class="input-icon"></i>
+                <input type="email" id="login-email" class="form-control" placeholder="alex@example.com" required autocomplete="username" />
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom: 2rem;">
+              <label for="login-password">Password</label>
+              <div class="input-wrapper">
+                <i data-lucide="lock" class="input-icon"></i>
+                <input type="password" id="login-password" class="form-control" placeholder="••••••••" required autocomplete="current-password" />
+              </div>
+            </div>
+            <button type="submit" class="btn-primary">
+              <span>Sign In</span>
+              <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+            </button>
+          </form>
+          
+          <p class="auth-toggle">
+            Don't have an account? <a href="#" id="toggle-to-signup">Start Onboarding</a>
+          </p>
+        </div>
+
+        <!-- B: SIGNUP/ONBOARDING VIEW -->
+        <div class="auth-card" id="signup-section" style="display: none;">
+          <h3 class="auth-card-title">Setup justfit Profile</h3>
+          <p class="auth-card-subtitle">Establish your target benchmarks and profile metrics.</p>
+
+          <div class="form-error" id="signup-error" role="alert"></div>
+
+          <form id="signup-form">
+            <div class="form-group">
+              <label for="signup-name">Full Name</label>
+              <div class="input-wrapper">
+                <i data-lucide="user" class="input-icon"></i>
+                <input type="text" id="signup-name" class="form-control" placeholder="Alex Rivera" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="signup-email">Email Address</label>
+              <div class="input-wrapper">
+                <i data-lucide="mail" class="input-icon"></i>
+                <input type="email" id="signup-email" class="form-control" placeholder="alex@justfit.com" required autocomplete="username" />
+              </div>
+            </div>
+            <!-- Metrics Row -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label for="signup-height">Height (cm)</label>
+                <input type="number" id="signup-height" class="form-control" style="padding-left: 1rem;" placeholder="178" min="100" max="250" required />
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label for="signup-weight">Weight (kg)</label>
+                <input type="number" id="signup-weight" class="form-control" style="padding-left: 1rem;" placeholder="75" min="30" max="200" step="0.1" required />
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom: 2rem;">
+              <label for="signup-goal">Health Goal Target</label>
+              <div class="input-wrapper">
+                <i data-lucide="target" class="input-icon"></i>
+                <select id="signup-goal" class="form-control form-control-select" required style="padding-left: 2.75rem;">
+                  <option value="" disabled selected>Select Goal</option>
+                  <option value="muscle_gain">Muscle Hypertrophy & Strength</option>
+                  <option value="weight_loss">Weight Reduction & Conditioning</option>
+                  <option value="maintenance">Cardiovascular Health & Recovery</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn-primary">
+              <span>Complete Setup</span>
+              <i data-lucide="sparkles" style="width: 18px; height: 18px;"></i>
+            </button>
+          </form>
+
+          <p class="auth-toggle">
+            Have an account? <a href="#" id="toggle-to-login">Sign In</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. MAIN APPLICATION WORKSPACE -->
+    <div id="app-container" style="display: none;">
+      <!-- Left Collapsible Sidebar -->
+      <aside class="app-sidebar" id="app-sidebar" aria-label="Main Navigation">
+        <div>
+          <div class="sidebar-brand">
+            <i data-lucide="zap" style="color: var(--primary-color); fill: var(--primary-color);"></i>
+            <span>justfit</span>
+          </div>
+          <div class="sidebar-motto" style="font-size: 0.65rem; font-weight: 700; color: var(--primary-color); text-transform: uppercase; letter-spacing: 0.08em; padding: 0 1.5rem; margin-top: -0.75rem; margin-bottom: 1.25rem; opacity: 0.7;">Pure Power, Zero Compromise</div>
+          <nav>
+            <ul class="sidebar-menu">
+              <li>
+                <a href="#dashboard" class="sidebar-link active" data-view="dashboard">
+                  <i data-lucide="layout-dashboard"></i>
+                  <span>Dashboard</span>
+                </a>
+              </li>
+              <li>
+                <a href="#fitness" class="sidebar-link" data-view="fitness">
+                  <i data-lucide="dumbbell"></i>
+                  <span>Fitness</span>
+                </a>
+              </li>
+              <li>
+                <a href="#nutrition" class="sidebar-link" data-view="nutrition">
+                  <i data-lucide="apple"></i>
+                  <span>Nutrition</span>
+                </a>
+              </li>
+              <li>
+                <a href="#sleep" class="sidebar-link" data-view="sleep">
+                  <i data-lucide="moon"></i>
+                  <span>Sleep Quality</span>
+                </a>
+              </li>
+              <li>
+                <a href="#wellness" class="sidebar-link" data-view="wellness">
+                  <i data-lucide="wind"></i>
+                  <span>Mental Wellness</span>
+                </a>
+              </li>
+              <li>
+                <a href="#heart" class="sidebar-link" data-view="heart">
+                  <i data-lucide="heart-pulse"></i>
+                  <span>Heart Health</span>
+                </a>
+              </li>
+              <li>
+                <a href="#analytics" class="sidebar-link" data-view="analytics">
+                  <i data-lucide="trending-up"></i>
+                  <span>Analytics</span>
+                </a>
+              </li>
+              <li>
+                <a href="#challenges" class="sidebar-link" data-view="challenges">
+                  <i data-lucide="trophy"></i>
+                  <span>Challenges</span>
+                </a>
+              </li>
+              <li>
+                <a href="#community" class="sidebar-link" data-view="community">
+                  <i data-lucide="users"></i>
+                  <span>Community</span>
+                </a>
+              </li>
+              <li>
+                <a href="#settings" class="sidebar-link" data-view="settings">
+                  <i data-lucide="settings"></i>
+                  <span>Settings</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="sidebar-user" id="profile-drawer-trigger">
+            <img id="header-avatar" src="" alt="User Avatar" class="user-avatar" />
+            <div class="user-info">
+              <span id="header-user-name" class="user-name">Loading...</span>
+              <span class="user-role">Athletic Tier 2</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Contents Area -->
+      <main class="app-main">
+        <!-- Top App Navigation Header -->
+        <header class="app-header">
+          <div style="display: flex; align-items: center;">
+            <button class="menu-toggle-btn" id="menu-toggle-btn" aria-label="Toggle Navigation Menu">
+              <i data-lucide="menu"></i>
+            </button>
+            <div class="header-title-section">
+              <h1 id="view-title">Dashboard</h1>
+              <p id="view-date-label">Today, July 13, 2026</p>
+            </div>
+          </div>
+
+          <div class="header-actions">
+            <!-- XP Progress Tracker -->
+            <div class="xp-tracker">
+              <div class="xp-labels">
+                <span id="xp-text">380 / 1000 XP</span>
+                <span id="level-label" class="level-badge">Lvl 2</span>
+              </div>
+              <div class="xp-progress-bg">
+                <div class="xp-progress-bar" id="xp-progress-bar" style="width: 38%;"></div>
+              </div>
+            </div>
+
+            <!-- Streak Pill -->
+            <div class="header-stat-pill streak">
+              <i data-lucide="flame" style="fill: #f59e0b;"></i>
+              <span id="streak-count">5 Days</span>
+            </div>
+
+            <!-- Coins Pill -->
+            <div class="header-stat-pill coins">
+              <i data-lucide="coins" style="fill: #eab308;"></i>
+              <span id="coin-count">240 Coins</span>
+            </div>
+
+            <!-- Notifications Trigger -->
+            <div style="position: relative;">
+              <button class="header-icon-btn" id="notification-bell-btn" aria-label="View notifications">
+                <i data-lucide="bell"></i>
+                <div class="notification-badge" id="notification-unread-badge"></div>
+              </button>
+              
+              <!-- Notifications Popover Card -->
+              <div id="notifications-popover" class="glass-card" style="display: none; position: absolute; top: 100%; right: 0; width: 320px; z-index: 1001; margin-top: 0.75rem; padding: 1.25rem;">
+                <h4 style="font-size: 1rem; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
+                  <span>Notifications</span>
+                  <a href="#" id="mark-all-read-btn" style="font-size: 0.75rem; color: var(--primary-color); text-decoration: none;">Mark read</a>
+                </h4>
+                <div id="notification-popover-list" style="display: flex; flex-direction: column; gap: 0.75rem; max-height: 250px; overflow-y: auto;">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Dynamic Views Area -->
+        <div class="views-wrapper">
+          
+          <!-- A: VIEW - DASHBOARD -->
+          <section class="view-panel" id="view-dashboard" style="display: block;">
+            <div class="dashboard-grid">
+              
+              <!-- Banner Card -->
+              <div class="welcome-banner">
+                <div class="welcome-banner-content">
+                  <h2 class="welcome-title">Welcome back, <span id="dash-user-name">Athletic</span>!</h2>
+                  <p class="welcome-subtitle">Your recovery index is outstanding today (84%). justfit recommends a moderate-heavy resistance workout this morning.</p>
+                </div>
+                <div class="welcome-banner-graphic">
+                  <div class="glass-card" style="background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.1); padding: 0.85rem 1.25rem;">
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">Current BMI</span>
+                    <h3 id="dash-bmi-val" style="font-size: 1.5rem; font-weight: 700; color: #10b981;">24.1</h3>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Left Side Dash content -->
+              <div class="dashboard-left">
+                <!-- 4 Quick Stats Grid -->
+                <div class="stats-cards-grid">
+                  <!-- Steps Stats Card -->
+                  <div class="glass-card stat-card">
+                    <div class="stat-header">
+                      <span class="stat-title">Daily Steps</span>
+                      <div class="stat-icon-wrapper calories">
+                        <i data-lucide="footprints"></i>
+                      </div>
+                    </div>
+                    <span class="stat-value" id="dash-steps-val">6,420</span>
+                    <span class="stat-goal" id="dash-steps-goal">Goal: 10,000</span>
+                    <div class="stat-progress-container">
+                      <div class="stat-progress-bar calories" id="dash-steps-progress" style="width: 64%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Calorie Card -->
+                  <div class="glass-card stat-card">
+                    <div class="stat-header">
+                      <span class="stat-title">Active Burn</span>
+                      <div class="stat-icon-wrapper heart">
+                        <i data-lucide="dumbbell"></i>
+                      </div>
+                    </div>
+                    <span class="stat-value" id="dash-calories-val">450 <span style="font-size: 1rem; color: var(--text-muted);">kcal</span></span>
+                    <span class="stat-goal" id="dash-calories-goal">Goal: 700 kcal</span>
+                    <div class="stat-progress-container">
+                      <div class="stat-progress-bar heart" id="dash-calories-progress" style="width: 64%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Water Intake -->
+                  <div class="glass-card stat-card">
+                    <div class="stat-header">
+                      <span class="stat-title">Hydration</span>
+                      <div class="stat-icon-wrapper water">
+                        <i data-lucide="droplet"></i>
+                      </div>
+                    </div>
+                    <span class="stat-value" id="dash-water-val">1,200 <span style="font-size: 1.1rem;">ml</span></span>
+                    <span class="stat-goal" id="dash-water-goal">Goal: 2,500 ml</span>
+                    <div class="stat-progress-container">
+                      <div class="stat-progress-bar water" id="dash-water-progress" style="width: 48%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Sleep Card -->
+                  <div class="glass-card stat-card">
+                    <div class="stat-header">
+                      <span class="stat-title">Sleep Index</span>
+                      <div class="stat-icon-wrapper sleep">
+                        <i data-lucide="moon"></i>
+                      </div>
+                    </div>
+                    <span class="stat-value" id="dash-sleep-val">82 <span style="font-size: 1rem; color: var(--text-muted);">score</span></span>
+                    <span class="stat-goal" id="dash-sleep-duration">7.8 hrs slept</span>
+                    <div class="stat-progress-container">
+                      <div class="stat-progress-bar sleep" id="dash-sleep-progress" style="width: 82%;"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step History Chart -->
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="trending-up" style="color: #10b981;"></i> Weekly Activity Progression</h3>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">Step Count</span>
+                  </div>
+                  <div id="dash-weekly-chart"></div>
+                </div>
+              </div>
+
+              <!-- Right Side Dash content -->
+              <div class="dashboard-right">
+                <!-- Health Score Gauge -->
+                <div class="glass-card" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                  <div class="panel-header" style="width: 100%;">
+                    <h3 class="panel-title"><i data-lucide="heart" style="color: #ef4444; fill: rgba(239, 68, 68, 0.2);"></i> Health Telemetry</h3>
+                  </div>
+                  <div id="health-score-radial-chart" style="margin: 0 auto;"></div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 100%; margin-top: 1rem;">
+                    <div style="background: rgba(255, 255, 255, 0.02); padding: 0.75rem; border-radius: 8px; text-align: left;">
+                      <p style="font-size: 0.75rem; color: var(--text-muted);">Heart Rate</p>
+                      <h4 style="font-size: 1.15rem; font-family: var(--font-heading);" id="dash-hr-val">72 bpm</h4>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.02); padding: 0.75rem; border-radius: 8px; text-align: left;">
+                      <p style="font-size: 0.75rem; color: var(--text-muted);">Stress Index</p>
+                      <h4 style="font-size: 1.15rem; font-family: var(--font-heading);" id="dash-stress-val">3 / 10</h4>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AI Recommendations Box -->
+                <div class="ai-recommendation-box">
+                  <div class="ai-rec-header">
+                    <i data-lucide="bot" style="animation: pulse 2s infinite;"></i>
+                    <span>justfit Active Insights</span>
+                  </div>
+                  <p class="ai-rec-content" id="dash-ai-rec-text">Based on your level 2 performance and yesterday's 8.1hr sleep, your recovery index is high. Avoid heavy carbohydrate intake after 7 PM tonight to stabilize blood oxygen levels during deep REM phases.</p>
+                  <a href="#fitai-chat" class="ai-rec-cta" id="go-to-ai-coach-btn">
+                    <span>Ask Coach justfit</span>
+                    <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i>
+                  </a>
+                </div>
+
+                <!-- Recent Activity List -->
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="history" style="color: #8b5cf6;"></i> Logged Workouts</h3>
+                  </div>
+                  <div class="activity-list" id="dash-recent-activities">
+                    <!-- Dynamically populated -->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- B: VIEW - FITNESS -->
+          <section class="view-panel" id="view-fitness">
+            <div class="fitness-layout">
+              <div class="dashboard-left">
+                <!-- Log Workout Form -->
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="plus-circle" style="color: #10b981;"></i> Record Workout Session</h3>
+                  </div>
+                  <form id="log-workout-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                      <div class="form-group" style="margin-bottom: 0;">
+                        <label for="workout-type">Activity Type</label>
+                        <select id="workout-type" class="form-control form-control-select" style="padding-left: 1rem;" required>
+                          <option value="Running">Running</option>
+                          <option value="Walking">Walking</option>
+                          <option value="Cycling">Cycling</option>
+                          <option value="Swimming">Swimming</option>
+                          <option value="Strength">Strength Training</option>
+                          <option value="Yoga">Yoga</option>
+                        </select>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 0;">
+                        <label for="workout-duration">Duration (mins)</label>
+                        <input type="number" id="workout-duration" class="form-control" style="padding-left: 1rem;" placeholder="30" min="1" required />
+                      </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                      <div class="form-group" style="margin-bottom: 0;">
+                        <label for="workout-distance">Distance (km)</label>
+                        <input type="number" id="workout-distance" class="form-control" style="padding-left: 1rem;" placeholder="0" min="0" step="0.1" />
+                      </div>
+                      <div class="form-group" style="margin-bottom: 0;">
+                        <label for="workout-calories">Est. Calories Burned</label>
+                        <input type="number" id="workout-calories" class="form-control" style="padding-left: 1rem;" placeholder="240" min="1" required />
+                      </div>
+                    </div>
+                    <button type="submit" class="btn-primary" style="margin-top: 0.5rem;">
+                      <i data-lucide="plus"></i>
+                      <span>Record Workout (+XP)</span>
+                    </button>
+                  </form>
+                </div>
+
+                <!-- Workouts List -->
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="dumbbell" style="color: #0ea5e9;"></i> Workout History Logs</h3>
+                  </div>
+                  <div class="activity-list" id="fitness-history-list">
+                    <!-- Dynamically populated -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Workout stopwatch timer -->
+              <div class="dashboard-right">
+                <div class="glass-card timer-card">
+                  <div class="panel-header" style="width: 100%;">
+                    <h3 class="panel-title"><i data-lucide="timer" style="color: #ef4444;"></i> Session Stopwatch</h3>
+                  </div>
+                  <div class="timer-container">
+                    <div class="timer-ring-wrapper">
+                      <!-- SVG Circle Progress Ring -->
+                      <svg width="200" height="200" class="timer-circle">
+                        <circle cx="100" cy="100" r="90" stroke="rgba(255, 255, 255, 0.05)" stroke-width="8" fill="transparent"/>
+                        <circle id="timer-progress-ring" cx="100" cy="100" r="90" stroke="#8b5cf6" stroke-width="8" fill="transparent"
+                                stroke-dasharray="565.48" stroke-dashoffset="0" />
+                      </svg>
+                      <div class="timer-display" id="stopwatch-display">00:00</div>
+                    </div>
+                    <div class="timer-controls">
+                      <button class="btn-circle play" id="timer-start-btn" aria-label="Start stopwatch"><i data-lucide="play"></i></button>
+                      <button class="btn-circle pause" id="timer-pause-btn" aria-label="Pause stopwatch" style="display: none;"><i data-lucide="pause"></i></button>
+                      <button class="btn-circle stop" id="timer-reset-btn" aria-label="Reset stopwatch"><i data-lucide="rotate-ccw"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- C: VIEW - NUTRITION -->
+          <section class="view-panel" id="view-nutrition">
+            <div class="nutrition-layout">
+              <!-- Left Column: Meal Log -->
+              <div class="dashboard-left">
+                <!-- Log Food Form -->
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="utensils-crossed" style="color: #10b981;"></i> Log Meal Intake</h3>
+                  </div>
+                  <form id="log-meal-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 1rem;">
+                      <div class="form-group" style="margin-bottom: 0;">
+                        <label for="meal-category">Meal Category</label>
+                        <select id="meal-category" class="form-control form-control-select" style="padding-left: 1rem;" required>
+                          <option value="breakfast">Breakfast</option>
+                          <option value="lunch">Lunch</option>
+                          <option value="dinner">Dinner</option>
+                          <option value="snack">Snack</option>
+                        </select>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 0;">
+                        <label for="meal-name">Food Item Name</label>
+                        <input type="text" id="meal-name" class="form-control" style="padding-left: 1rem;" placeholder="e.g. Scrambled Eggs (3)" required />
+                      </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;">
+                      <div class="form-group" style="margin-bottom: 0;">
+                        <label for="meal-calories">Kcal</label>
+                        <input type="number" id="meal-calories" class="form-control" style="padding-left: 0.5rem; padding-right: 0.5rem; text-align: center;" placeholder="350" required />
+                      </div>
+                      <div class="form-group" style="margin-bottom: 0;">
+                        <label for="meal-protein">Protein (g)</label>
+                        <input type="number" id="meal-protein" class="form-control" style="padding-left: 0.5rem; padding-right: 0.5rem; text-align: center;" placeholder="15" />
+                      </div>
+                      <div class="form-group" style="margin-bottom: 0;">
+                        <label for="meal-carbs">Carbs (g)</label>
+                        <input type="number" id="meal-carbs" class="form-control" style="padding-left: 0.5rem; padding-right: 0.5rem; text-align: center;" placeholder="40" />
+                      </div>
+                      <div class="form-group" style="margin-bottom: 0;">
+                        <label for="meal-fat">Fat (g)</label>
+                        <input type="number" id="meal-fat" class="form-control" style="padding-left: 0.5rem; padding-right: 0.5rem; text-align: center;" placeholder="10" />
+                      </div>
+                    </div>
+                    <button type="submit" class="btn-primary" style="margin-top: 0.5rem;">
+                      <i data-lucide="plus"></i>
+                      <span>Add Meal Intake</span>
+                    </button>
+                  </form>
+                </div>
+
+                <!-- Today's Meal Items List -->
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="clipboard-list" style="color: #8b5cf6;"></i> Today's Food Logs</h3>
+                  </div>
+                  <div class="activity-list" id="nutrition-meals-list">
+                    <!-- Dynamically populated -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Macros Chart & Water Tracker -->
+              <div class="dashboard-right">
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="pie-chart" style="color: #8b5cf6;"></i> Macro Distributions</h3>
+                    <span id="nutrition-calories-summary" style="font-size: 0.8rem; color: var(--text-muted);">1385 / 2110 Kcal</span>
+                  </div>
+                  <div id="nutrition-macros-chart" style="margin: 0 auto;"></div>
+                  <div class="macro-ring-container">
+                    <div class="macro-box">
+                      <h4>Protein</h4>
+                      <p id="nut-p-val">65g / 150g</p>
+                    </div>
+                    <div class="macro-box">
+                      <h4>Carbs</h4>
+                      <p id="nut-c-val">180g / 220g</p>
+                    </div>
+                    <div class="macro-box">
+                      <h4>Fat</h4>
+                      <p id="nut-f-val">45g / 70g</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Water interactive Tracker -->
+                <div class="glass-card water-container" style="text-align: center;">
+                  <h3 class="panel-title" style="align-self: flex-start;"><i data-lucide="droplet" style="color: #0ea5e9;"></i> Interactive Hydration</h3>
+                  <div class="water-tank">
+                    <div class="water-wave" id="water-wave-element" style="height: 48%;"></div>
+                  </div>
+                  <div style="margin-bottom: 1rem;">
+                    <h4 style="font-size: 1.5rem;" id="nutrition-water-val">1200 / 2500 ml</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Hit targets to progress water milestones</p>
+                  </div>
+                  <div class="water-buttons">
+                    <button class="btn-glass" id="water-add-250-btn" aria-label="Add 250 milliliters water">+ 250 ml</button>
+                    <button class="btn-glass" id="water-add-500-btn" aria-label="Add 500 milliliters water">+ 500 ml</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- D: VIEW - SLEEP -->
+          <section class="view-panel" id="view-sleep">
+            <div class="sleep-grid">
+              <div class="dashboard-left">
+                <!-- Stacked sleep duration phases -->
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="moon" style="color: #8b5cf6;"></i> Weekly Sleep Phase Telemetry</h3>
+                  </div>
+                  <div id="sleep-stacked-phases-chart"></div>
+                </div>
+              </div>
+              <div class="dashboard-right">
+                <!-- Sleep quality summary -->
+                <div class="glass-card" style="text-align: center;">
+                  <h3 class="panel-title" style="align-self: flex-start;"><i data-lucide="shield-alert" style="color: #0ea5e9;"></i> Sleep Quality Assessment</h3>
+                  <div style="font-size: 3rem; font-family: var(--font-heading); font-weight: 700; margin: 1.5rem 0;" id="sleep-panel-score">82%</div>
+                  <div style="display: flex; flex-direction: column; gap: 0.85rem; text-align: left;">
+                    <div class="metric-row">
+                      <span class="metric-label">Deep Sleep</span>
+                      <span class="metric-val" id="sleep-deep-hours">1.8 hrs</span>
+                    </div>
+                    <div class="metric-row">
+                      <span class="metric-label">REM Sleep</span>
+                      <span class="metric-val" id="sleep-rem-hours">1.4 hrs</span>
+                    </div>
+                    <div class="metric-row">
+                      <span class="metric-label">Light Sleep</span>
+                      <span class="metric-val" id="sleep-light-hours">4.6 hrs</span>
+                    </div>
+                  </div>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1.5rem; text-align: center;">Sleep latency was 14 mins. Total disturbances registered: 3.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- E: VIEW - MENTAL WELLNESS -->
+          <section class="view-panel" id="view-wellness">
+            <div class="wellness-layout">
+              <!-- Breathing bubble card -->
+              <div class="glass-card breathing-card">
+                <h3 class="panel-title" style="align-self: flex-start;"><i data-lucide="wind" style="color: #0ea5e9;"></i> Mindfulness Breathing</h3>
+                <div class="breathing-bubble-wrapper">
+                  <div class="breathing-bubble" id="breathing-bubble-element"></div>
+                </div>
+                <div class="breathing-instruction" id="breathing-instruction-text">Inhale...</div>
+                <button class="btn-primary" id="breathing-toggle-btn" style="margin-top: 1.5rem; width: auto; padding: 0.6rem 2rem;">
+                  <span>Start Breath Exercise</span>
+                </button>
+              </div>
+
+              <!-- Mood logger & Motivation quotes -->
+              <div class="dashboard-right">
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="heart" style="color: #ef4444;"></i> Today's Mood & Stress</h3>
+                  </div>
+                  <form id="mood-form" style="display: flex; flex-direction: column; gap: 1.25rem;">
+                    <div>
+                      <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Select Current Mood</label>
+                      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem;">
+                        <button type="button" class="btn-glass mood-btn active" data-mood="excellent" style="font-size: 1.5rem;" aria-label="Excellent mood">😊</button>
+                        <button type="button" class="btn-glass mood-btn" data-mood="good" style="font-size: 1.5rem;" aria-label="Good mood">🙂</button>
+                        <button type="button" class="btn-glass mood-btn" data-mood="neutral" style="font-size: 1.5rem;" aria-label="Neutral mood">😐</button>
+                        <button type="button" class="btn-glass mood-btn" data-mood="stressed" style="font-size: 1.5rem;" aria-label="Stressed mood">😰</button>
+                        <button type="button" class="btn-glass mood-btn" data-mood="tired" style="font-size: 1.5rem;" aria-label="Tired mood">😴</button>
+                      </div>
+                    </div>
+                    <div>
+                      <label for="stress-range-input" style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
+                        <span>Stress Level Indicator</span>
+                        <span id="stress-level-label">3 / 10 (Mild)</span>
+                      </label>
+                      <input type="range" id="stress-range-input" min="1" max="10" value="3" style="width: 100%; accent-color: var(--accent-color);" />
+                    </div>
+                    <button type="submit" class="btn-primary">
+                      <i data-lucide="check"></i>
+                      <span>Record Mental Wellness Log (+15 XP)</span>
+                    </button>
+                  </form>
+                </div>
+
+                <div class="glass-card" style="background: linear-gradient(135deg, rgba(161, 250, 10, 0.05), rgba(207, 237, 137, 0.05));">
+                  <h3 class="panel-title" style="font-size: 1rem;"><i data-lucide="sparkles" style="color: #ef4444;"></i> Daily Motivation Nudge</h3>
+                  <p style="font-style: italic; font-size: 0.95rem; margin-top: 0.75rem; line-height: 1.5;">"The body achieves what the mind believes. Prioritize 10 minutes of deep meditation to lower physical stress parameters for high-load muscle gain cycles."</p>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; text-align: right;">- justfit Coach</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- F: VIEW - HEART HEALTH -->
+          <section class="view-panel" id="view-heart">
+            <div class="sleep-grid">
+              <div class="dashboard-left">
+                <!-- Real-time Heart Rate Area Chart -->
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="activity" style="color: #ef4444;"></i> Heart Rate Monitor Trend (BPM)</h3>
+                  </div>
+                  <div id="heart-bpm-area-chart"></div>
+                </div>
+              </div>
+              <div class="dashboard-right">
+                <!-- Vitals Summary Table -->
+                <div class="glass-card">
+                  <h3 class="panel-title" style="margin-bottom: 1.25rem;"><i data-lucide="heart-pulse" style="color: #10b981;"></i> Active Vitals Telemetry</h3>
+                  <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                    <div class="metric-row">
+                      <span class="metric-label">Blood Oxygen (SpO2)</span>
+                      <span class="metric-val" id="heart-panel-spo2">98% (Optimal)</span>
+                    </div>
+                    <div class="metric-row">
+                      <span class="metric-label">Blood Pressure</span>
+                      <span class="metric-val" id="heart-panel-bp">118 / 76 mmHg</span>
+                    </div>
+                    <div class="metric-row">
+                      <span class="metric-label">Blood Sugar</span>
+                      <span class="metric-val" id="heart-panel-sugar">95 mg/dl (Fasting)</span>
+                    </div>
+                    <div class="metric-row">
+                      <span class="metric-label">Vitals Status</span>
+                      <span class="trend-badge up">Normal</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- G: VIEW - ANALYTICS -->
+          <section class="view-panel" id="view-analytics">
+            <div class="analytics-grid">
+              <!-- Double Axis Chart showing Steps vs Calories -->
+              <div class="glass-card analytics-full-width">
+                <div class="panel-header">
+                  <h3 class="panel-title"><i data-lucide="trending-up" style="color: #0ea5e9;"></i> Multi-Variable Weekly Telemetry Comparison</h3>
+                </div>
+                <div id="analytics-comparison-chart"></div>
+              </div>
+
+              <!-- Calendar Heatmap Card -->
+              <div class="glass-card">
+                <div class="panel-header">
+                  <h3 class="panel-title"><i data-lucide="calendar" style="color: #10b981;"></i> Goal Completion Heatmap</h3>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Color density represents daily milestones ticked off</p>
+                <div class="calendar-heatmap">
+                  <!-- Generated Heatmap Grid -->
+                  <div class="heatmap-day level-3">1</div>
+                  <div class="heatmap-day level-4">2</div>
+                  <div class="heatmap-day level-2">3</div>
+                  <div class="heatmap-day level-1">4</div>
+                  <div class="heatmap-day level-3">5</div>
+                  <div class="heatmap-day level-2">6</div>
+                  <div class="heatmap-day level-4">7</div>
+                  <div class="heatmap-day level-3">8</div>
+                  <div class="heatmap-day level-4">9</div>
+                  <div class="heatmap-day level-1">10</div>
+                  <div class="heatmap-day level-2">11</div>
+                  <div class="heatmap-day level-3">12</div>
+                  <div class="heatmap-day level-2" id="heatmap-today">13</div>
+                  <div class="heatmap-day">14</div>
+                  <div class="heatmap-day">15</div>
+                  <div class="heatmap-day">16</div>
+                  <div class="heatmap-day">17</div>
+                  <div class="heatmap-day">18</div>
+                  <div class="heatmap-day">19</div>
+                  <div class="heatmap-day">20</div>
+                  <div class="heatmap-day">21</div>
+                </div>
+              </div>
+
+              <!-- Summary Card -->
+              <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <h3 class="panel-title"><i data-lucide="file-text" style="color: #8b5cf6;"></i> AI Biometric Predictions</h3>
+                <div style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 1rem 0;">
+                  "Based on steps (average: 8,300) and calories logged, you are projected to reach your muscle mass target in **4 weeks**. Daily water goals are met at a rate of 71%. Maintain current heart rate variation (average resting: 65 BPM) for optimal cardiovascular safety."
+                </div>
+                <button class="btn-glass" style="width: 100%;">Export PDF Biometric Report</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- H: VIEW - CHALLENGES & GAMIFICATION -->
+          <section class="view-panel" id="view-challenges">
+            <div class="sleep-grid">
+              <div class="dashboard-left">
+                <!-- Active Challenges -->
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="swords" style="color: #ef4444;"></i> Active Gamified Milestones</h3>
+                  </div>
+                  <div class="challenges-grid" id="challenges-active-list">
+                    <!-- Dynamically populated -->
+                  </div>
+                </div>
+              </div>
+              <div class="dashboard-right">
+                <!-- Badges Locked / Unlocked -->
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="award" style="color: #f59e0b;"></i> Unlocked Badges</h3>
+                  </div>
+                  <div class="badges-grid" id="badges-unlocked-grid">
+                    <!-- Dynamically populated -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- I: VIEW - COMMUNITY -->
+          <section class="view-panel" id="view-community">
+            <div class="sleep-grid">
+              <div class="dashboard-left">
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="message-square" style="color: var(--secondary-color);"></i> justfit Community Feed</h3>
+                  </div>
+                  <div class="activity-list">
+                    <!-- Community Mock Post 1 -->
+                    <div class="activity-item" style="flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 1.25rem;">
+                      <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                          <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Marcus" style="width: 32px; height: 32px; border-radius: 50%;" alt="Marcus avatar" />
+                          <div>
+                            <h4 style="font-size: 0.85rem; font-weight: 700;">Marcus Aurelius</h4>
+                            <p style="font-size: 0.7rem; color: var(--text-muted);">1 hour ago</p>
+                          </div>
+                        </div>
+                        <span class="header-stat-pill" style="font-size: 0.75rem; padding: 0.15rem 0.6rem;">Level 5</span>
+                      </div>
+                      <p style="font-size: 0.85rem;">Just finished a new Running PB! Logged 10km in under 48 minutes today using justfit routines. Consistency check! 🏃‍♂️💪</p>
+                      <div style="display: flex; gap: 1rem; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid rgba(255, 255, 255, 0.03); width: 100%; padding-top: 0.5rem; margin-top: 0.25rem;">
+                        <span>❤️ 18 Likes</span>
+                        <span>💬 4 Comments</span>
+                      </div>
+                    </div>
+
+                    <!-- Community Mock Post 2 -->
+                    <div class="activity-item" style="flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 1.25rem;">
+                      <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                          <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Serena" style="width: 32px; height: 32px; border-radius: 50%;" alt="Serena avatar" />
+                          <div>
+                            <h4 style="font-size: 0.85rem; font-weight: 700;">Serena Chen</h4>
+                            <p style="font-size: 0.7rem; color: var(--text-muted);">3 hours ago</p>
+                          </div>
+                        </div>
+                        <span class="header-stat-pill" style="font-size: 0.75rem; padding: 0.15rem 0.6rem;">Level 3</span>
+                      </div>
+                      <p style="font-size: 0.85rem;">Water Warrior challenge completed! Keeping hydration constant was the missing piece to reduce muscle fatigue. Highly recommend the post-workout shakes. 🥛🔥</p>
+                      <div style="display: flex; gap: 1rem; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid rgba(255, 255, 255, 0.03); width: 100%; padding-top: 0.5rem; margin-top: 0.25rem;">
+                        <span>❤️ 12 Likes</span>
+                        <span>💬 1 Comment</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Leaderboard Card -->
+              <div class="dashboard-right">
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="bar-chart-2" style="color: #f59e0b;"></i> Regional Leaderboard</h3>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                    <!-- Leaderboard Item 1 -->
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem; background: rgba(255, 255, 255, 0.02); border-radius: 8px;">
+                      <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-weight: 700; color: #f59e0b; width: 20px;">#1</span>
+                        <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Mike" style="width: 28px; height: 28px; border-radius: 50%;" alt="Mike avatar" />
+                        <span style="font-size: 0.85rem; font-weight: 600;">Mike Vance</span>
+                      </div>
+                      <span style="font-weight: 700; font-size: 0.85rem; color: var(--accent-color);">1,420 XP</span>
+                    </div>
+
+                    <!-- Leaderboard Item 2 -->
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem; background: rgba(255, 255, 255, 0.02); border-radius: 8px;">
+                      <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-weight: 700; color: #9ca3af; width: 20px;">#2</span>
+                        <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Emma" style="width: 28px; height: 28px; border-radius: 50%;" alt="Emma avatar" />
+                        <span style="font-size: 0.85rem; font-weight: 600;">Emma Watson</span>
+                      </div>
+                      <span style="font-weight: 700; font-size: 0.85rem; color: var(--accent-color);">980 XP</span>
+                    </div>
+
+                    <!-- Leaderboard Item 3 (Current user position placeholder) -->
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem; border: 1px solid var(--primary-color); background: rgba(16, 185, 129, 0.05); border-radius: 8px;">
+                      <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-weight: 700; color: var(--primary-color); width: 20px;" id="leaderboard-user-rank">#3</span>
+                        <img id="leaderboard-user-avatar" src="" style="width: 28px; height: 28px; border-radius: 50%;" alt="User avatar" />
+                        <span style="font-size: 0.85rem; font-weight: 700;" id="leaderboard-user-name">You</span>
+                      </div>
+                      <span style="font-weight: 700; font-size: 0.85rem; color: var(--accent-color);" id="leaderboard-user-xp">380 XP</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- J: VIEW - SETTINGS & ACCESSIBILITY -->
+          <section class="view-panel" id="view-settings">
+            <div class="sleep-grid">
+              <div class="dashboard-left">
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="accessibility" style="color: #10b981;"></i> WCAG 2.2 Accessibility Tools</h3>
+                  </div>
+                  <div class="settings-list">
+                    <!-- Text zoom -->
+                    <div class="settings-row">
+                      <div class="settings-info">
+                        <h4>Large Text Mode</h4>
+                        <p style="max-width: 280px;">Increases default font sizes across the metrics grids for better visual legibility.</p>
+                      </div>
+                      <label class="switch">
+                        <input type="checkbox" id="accessibility-large-text-btn" aria-label="Toggle Large Text scale" />
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+
+                    <!-- High Contrast -->
+                    <div class="settings-row">
+                      <div class="settings-info">
+                        <h4>High Contrast Mode</h4>
+                        <p style="max-width: 280px;">Adapts color contrast matrices to meet and exceed strict WCAG 2.2 guidelines.</p>
+                      </div>
+                      <label class="switch">
+                        <input type="checkbox" id="accessibility-high-contrast-btn" aria-label="Toggle High Contrast rendering" />
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- App Preferences -->
+                <div class="glass-card">
+                  <div class="panel-header">
+                    <h3 class="panel-title"><i data-lucide="sliders" style="color: #0ea5e9;"></i> Application Configuration</h3>
+                  </div>
+                  <div class="settings-list">
+                    <div class="settings-row" style="cursor: pointer;" id="reset-app-state-btn">
+                      <div class="settings-info">
+                        <h4 style="color: #ef4444;">Clear Workspace Memory</h4>
+                        <p>Restores database state variables to default values. Clears active session logs.</p>
+                      </div>
+                      <i data-lucide="trash-2" style="color: #ef4444;"></i>
+                    </div>
+
+                    <div class="settings-row" style="cursor: pointer;" id="logout-btn">
+                      <div class="settings-info">
+                        <h4>De-authorize Active Session</h4>
+                        <p>Closes local telemetry transmission and redirects back to the login gateway.</p>
+                      </div>
+                      <i data-lucide="log-out"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Keyboard guide -->
+              <div class="dashboard-right">
+                <div class="glass-card" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(14, 165, 233, 0.05));">
+                  <h3 class="panel-title" style="font-size: 1rem;"><i data-lucide="keyboard" style="color: #8b5cf6;"></i> Keyboard Navigation Map</h3>
+                  <div style="font-size: 0.8rem; line-height: 1.5; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+                    <p>🎯 **Tab / Shift+Tab**: Cycle focusable fields, cards, and input values.</p>
+                    <p>🎯 **Enter / Space**: Click buttons, log meal entries, or open drawers.</p>
+                    <p>🎯 **Escape**: Instantly close active chatbot drawer or profile drawer overlays.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </main>
+
+      <!-- Floating AI Coach trigger button -->
+      <button class="fitai-trigger-btn" id="fitai-trigger-btn" aria-label="Open justfit assistant" aria-expanded="false" aria-controls="fitai-chat-panel">
+        <i data-lucide="message-square"></i>
+      </button>
+
+      <!-- Floating AI Chatbot Drawer Panel -->
+      <div class="fitai-chat-panel" id="fitai-chat-panel" role="dialog" aria-label="justfit Coach Chatbot">
+        <div class="chat-header">
+          <div class="chat-bot-identity">
+            <div class="chat-bot-avatar">
+              <i data-lucide="zap" style="color: #ffffff; fill: #ffffff; width: 14px; height: 14px;"></i>
+            </div>
+            <div class="chat-bot-name">
+              <h3>justfit Coach</h3>
+              <span class="chat-bot-status">Active</span>
+            </div>
+          </div>
+          <button class="chat-close-btn" id="fitai-chat-close-btn" aria-label="Close Chatbot panel">
+            <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+          </button>
+        </div>
+
+        <div class="chat-messages" id="fitai-messages-container">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Predefined prompt chips -->
+        <div class="chat-chips-wrapper" id="chat-chips-wrapper">
+          <button class="chat-chip" data-question="Generate today's workout.">Generate Workout</button>
+          <button class="chat-chip" data-question="What should I eat after exercise?">Post-Workout Meal</button>
+          <button class="chat-chip" data-question="Explain my BMI.">Explain BMI</button>
+          <button class="chat-chip" data-question="Help me lose belly fat.">Lose Belly Fat</button>
+          <button class="chat-chip" data-question="Create a meal plan.">Create Meal Plan</button>
+        </div>
+
+        <form class="chat-input-area" id="fitai-input-form">
+          <input type="text" id="fitai-message-input" class="chat-input" placeholder="Ask justfit about workouts, diet, or BMI..." required />
+          <button type="submit" class="chat-send-btn" aria-label="Send message">
+            <i data-lucide="send" style="width: 16px; height: 16px;"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- Profile Settings Edit Slide Out Overlay Drawer -->
+      <div class="profile-drawer" id="profile-drawer" role="dialog" aria-label="Profile Details Drawer">
+        <div class="drawer-header">
+          <h2>Biometric Profile</h2>
+          <button class="drawer-close-btn" id="profile-drawer-close-btn" aria-label="Close profile drawer">
+            <i data-lucide="x" style="width: 24px; height: 24px;"></i>
+          </button>
+        </div>
+
+        <div class="drawer-avatar-section">
+          <img id="drawer-avatar" src="" alt="Drawer User Avatar" class="drawer-avatar" />
+          <h3 id="drawer-user-name" class="drawer-user-name">Alex Rivera</h3>
+          <p id="drawer-user-email" class="drawer-user-email">admin@justfit.com</p>
+        </div>
+
+        <form id="profile-edit-form" class="profile-edit-form">
+          <div class="form-group">
+            <label for="edit-profile-name">Full Name</label>
+            <input type="text" id="edit-profile-name" class="form-control" style="padding-left: 1rem;" required />
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label for="edit-profile-height">Height (cm)</label>
+              <input type="number" id="edit-profile-height" class="form-control" style="padding-left: 1rem;" required />
+            </div>
+            <div class="form-group">
+              <label for="edit-profile-weight">Weight (kg)</label>
+              <input type="number" id="edit-profile-weight" class="form-control" style="padding-left: 1rem;" step="0.1" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="edit-profile-goal">Active Target Goal</label>
+            <select id="edit-profile-goal" class="form-control form-control-select" style="padding-left: 1rem;" required>
+              <option value="muscle_gain">Muscle Hypertrophy & Strength</option>
+              <option value="weight_loss">Weight Reduction & Conditioning</option>
+              <option value="maintenance">Cardiovascular Health & Recovery</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary" style="margin-top: 1rem;">
+            <i data-lucide="save"></i>
+            <span>Update Profile (+10 XP)</span>
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Lucide Icon Library -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- App Engine script -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

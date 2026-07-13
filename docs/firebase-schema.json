@@ -1,0 +1,161 @@
+{
+  "users": {
+    "$uid": {
+      "email": "user@example.com",
+      "fullName": "Jane Doe",
+      "avatarUrl": "https://api.dicebear.com/7.x/adventurer/svg?seed=Jane",
+      "createdAt": "2026-07-13T20:00:00.000Z",
+      "gamification": {
+        "xp": 340,
+        "level": 2,
+        "coins": 150,
+        "currentStreak": 5,
+        "lastActiveDate": "2026-07-13"
+      },
+      "profile": {
+        "heightCm": 172.5,
+        "weightKg": 68.2,
+        "birthDate": "1994-08-12",
+        "gender": "female",
+        "healthGoal": "weight_loss"
+      }
+    }
+  },
+  "healthRecords": {
+    "$uid": {
+      "$recordId": {
+        "recordedAt": "2026-07-13T08:30:00.000Z",
+        "weightKg": 68.2,
+        "heightCm": 172.5,
+        "bmi": 22.9,
+        "bodyFatPercentage": 24.5,
+        "muscleMassKg": 48.8,
+        "heartRateBpm": 72,
+        "bloodPressure": {
+          "systolic": 118,
+          "diastolic": 76
+        },
+        "bloodOxygenSpO2": 99,
+        "bloodSugarMgDl": 95,
+        "stressLevel": 3,
+        "mood": "good",
+        "waterIntakeMl": 1200
+      }
+    }
+  },
+  "fitnessActivities": {
+    "$uid": {
+      "$activityId": {
+        "activityType": "running",
+        "durationMinutes": 45,
+        "distanceKm": 6.2,
+        "caloriesBurned": 420,
+        "avgHeartRate": 145,
+        "recordedAt": "2026-07-13T18:00:00.000Z",
+        "notes": "Evening trail run. Felt great!"
+      }
+    }
+  },
+  "nutritionLogs": {
+    "$uid": {
+      "$logId": {
+        "mealType": "breakfast",
+        "foodName": "Oatmeal with Bananas and Honey",
+        "calories": 350,
+        "macros": {
+          "proteinG": 12,
+          "carbsG": 65,
+          "fatG": 6
+        },
+        "loggedAt": "2026-07-13T07:15:00.000Z"
+      }
+    }
+  },
+  "sleepLogs": {
+    "$uid": {
+      "$dateString": {
+        "sleepDate": "2026-07-13",
+        "sleepDurationHours": 7.8,
+        "phases": {
+          "deepSleepHours": 1.9,
+          "remSleepHours": 1.5,
+          "lightSleepHours": 4.4
+        },
+        "sleepScore": 84,
+        "sleepQuality": "restful",
+        "recordedAt": "2026-07-13T06:30:00.000Z"
+      }
+    }
+  },
+  "goals": {
+    "$uid": {
+      "$goalId": {
+        "goalType": "steps",
+        "targetValue": 10000,
+        "currentValue": 8420,
+        "status": "active",
+        "startDate": "2026-07-13",
+        "endDate": "2026-07-13",
+        "createdAt": "2026-07-13T00:01:00.000Z"
+      }
+    }
+  },
+  "achievements": {
+    "achievement_001": {
+      "name": "First Step",
+      "description": "Log your first activity in justfit.",
+      "badgeIcon": "award",
+      "xpReward": 50
+    }
+  },
+  "userAchievements": {
+    "$uid": {
+      "achievement_001": {
+        "unlockedAt": "2026-07-13T18:05:00.000Z"
+      }
+    }
+  },
+  "notifications": {
+    "$uid": {
+      "$notificationId": {
+        "type": "streak_milestone",
+        "message": "🔥 Awesome! You're on a 5-day streak!",
+        "isRead": false,
+        "createdAt": "2026-07-13T19:00:00.000Z"
+      }
+    }
+  },
+  "aiConversations": {
+    "$uid": {
+      "$sessionId": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "Explain my BMI.",
+            "createdAt": "2026-07-13T19:30:00.000Z"
+          },
+          {
+            "role": "assistant",
+            "content": "Your BMI is 22.9, which is in the Normal range (18.5 - 24.9). This suggests a healthy weight-to-height ratio.",
+            "createdAt": "2026-07-13T19:30:05.000Z"
+          }
+        ]
+      }
+    }
+  },
+  "progressReports": {
+    "$uid": {
+      "$reportId": {
+        "reportType": "weekly",
+        "summary": "Your physical activity increased by 15% this week compared to the last. Excellent consistency with sleep.",
+        "riskLevel": "low",
+        "lifestyleImprovements": [
+          "Maintain current physical activity levels.",
+          "Try to drink 500ml more water daily during intense afternoon workouts."
+        ],
+        "predictions": "If current habits are maintained, you are projected to reach your muscle mass target in 4 weeks.",
+        "createdAt": "2026-07-13T20:00:00.000Z"
+      }
+    }
+  }
+}
